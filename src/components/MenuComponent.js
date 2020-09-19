@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, CardImg, CardImgOverlay } from 'reactstrap';
-// import DishDetail from './DishdetailComponent';
 
 class Menu extends Component{
 	
 	render(){
-		// console.log('yahaaaaaaaaan:',this.props.onClick(2));
 		const menu = this.props.dishes.map((dish) => {
 			return (
 				<div key={dish.id} className="col-12 col-md-5 m-1">

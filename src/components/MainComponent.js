@@ -15,8 +15,6 @@ class Main extends Component {
 	}
 
 	onDishSelect(dishId){
-		console.log(dishId);
-		// console.log(dish);
 		this.setState({ selectedDish: dishId });
 	}
 
