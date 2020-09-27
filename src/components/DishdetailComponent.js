@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardTitle, CardBody, CardText, CardImg } from 'reactstrap';
+import { Card, CardTitle, CardBody, CardText, CardImg, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const RenderDish = ({dish}) => {
 	if (dish != null)
@@ -16,9 +17,8 @@ const RenderDish = ({dish}) => {
 		return(<div></div>);
 }
 
-const RenderComments = ({dishInfo, comments}) => {
-	const obj = dishInfo;
-	const commentArr = obj.comments.map(x => {
+const RenderComments = ({comments}) => {
+	const commentArr = comments.map(x => {
 
 		if (comments != null){
 			return(
@@ -39,17 +39,28 @@ const RenderComments = ({dishInfo, comments}) => {
 }
 
 const DishDetail = (props) => {
-	const details = props.selectedDishInfo;
-	const commentsParam = JSON.stringify(props.selectedDishInfo.comments);
+	const details = props.dish;
+	const comments = props.comments;
 	return(
 		<div className="container">
-			<div className="row">				
+			<div className="row">
+				<Breadcrumb>
+					<BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+					<BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                </Breadcrumb>		
+                <div className="col-12">
+                    <h3>{props.dish.name}</h3>
+                    <hr />
+                </div>         
+			</div>
+			<div className="row">		
 				<div className="col-12 col-md-5 m-1">
 					<RenderDish dish={details} />
 				</div>
 				<div className="col-12 col-md-5 m-1">
 					<h4>Comments</h4>
-					<RenderComments comments={commentsParam} dishInfo={details} />
+					<RenderComments comments={comments} />
 				</div>
 			</div>
 		</div>
