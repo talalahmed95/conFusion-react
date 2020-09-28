@@ -10,7 +10,7 @@ const Menu = (props) => {
 	
 	const menu = props.dishes.map((dish) => {
 		return (
-			<div key={dish.id} className="col-12 col-md-12 m-1">
+			<div key={dish.id} className="col-12 col-md-5 m-1">
 				<Card style={style}>
 					<Link to={`/menu/${dish.id}`} >
 						<CardImg src={dish.image} alt={dish.name} />
