@@ -2,38 +2,31 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-const RenderLeader = ({leaderParam}) => {
-    const leaderArray = leaderParam.map((x) => {
-        return (
-            <Media list className="mb-5">
-                <Media tag="li">
-                    <Media left>
-                        <Media className="mr-5" object src={x.image} alt={x.name} />
-                    </Media>
-                    <Media body>
-                        <Media heading>
-                            {x.name}
-                        </Media>
-                        <div className="mb-3">{x.designation}</div>
-                        {x.description}
-                    </Media>
-                </Media>
+const RenderLeader = ({leader}) => {
+    return (
+        <Media tag="li" className="mt-5">
+            <Media left>
+                <Media className="mr-5" object src={leader.image} alt={leader.name} />
             </Media>
-        );
-    });    
-
-    return (leaderArray);
+            <Media body>
+                <Media heading>
+                    {leader.name}
+                </Media>
+                <div className="mb-3">{leader.designation}</div>
+                {leader.description}
+            </Media>
+        </Media>
+    );
 }
 
 const about = (props) => {
-
-    // const leaders = props.leaders.map((leader) => {
-    //     return (
-    //         <p>Leader {leader.name}</p>
-    //     );
-    // });
-
-    const leaders = props.leaders;
+    const leaders = props.leaders.map((leader) => {
+        return (
+            <div key={leader.id}>
+                <RenderLeader leader={leader} />
+            </div>
+        );
+    });
 
     return(
         <div className="container">
@@ -89,8 +82,10 @@ const about = (props) => {
                 <div className="col-12">
                     <h2>Corporate Leadership</h2>
                 </div>
-                <div className="col-12 mt-4">
-                    <RenderLeader leaderParam={leaders} />                    
+                <div className="col-12">
+                    <Media list>
+                        {leaders}
+                    </Media>                 
                 </div>
             </div>
         </div>
