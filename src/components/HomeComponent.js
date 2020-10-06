@@ -19,7 +19,7 @@ const RenderCard = ({item}) => {
 const home = (props) => {
     return(
       <div className="container">
-        <div className="row align-items-start">
+        <div className="row row-content">
             <div className="col-12 col-md m-1">
                 <RenderCard item={props.dish} />
             </div>
