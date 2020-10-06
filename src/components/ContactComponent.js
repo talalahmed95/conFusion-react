@@ -4,39 +4,9 @@ import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
 class Contact extends Component {
-    state = {
-        firstname: '',
-        lastname: '',
-        telnum: '',
-        email: '',
-        agree: false,
-        contactType: 'Tel.',
-        message: '',
-        touched: {
-            firstname: false,
-            lastname: false,
-            telnum: false,
-            email: false
-        }
-    }
-
-    inputChangeHandler = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({ [name]: value });
-    }
-
+    
     submitHandler = (values) => {
         alert('Current State is: ' + JSON.stringify(values));
-        // event.preventDefault();
-    }
-
-    blurHandler = (field) => (evt) => {
-        this.setState({
-            touched: { ...this.state.touched, [field]: true }
-        });
     }
 
     render() {
