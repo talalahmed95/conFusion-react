@@ -13,7 +13,7 @@ class CommentForm extends Component {
     }
 
     submitHandler = (values) => {
-        alert('Current State is: ' + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
