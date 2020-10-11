@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardTitle, CardImg, CardImgOverlay, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
 
 const Menu = (props) => {
 
@@ -13,7 +14,7 @@ const Menu = (props) => {
 			<div key={dish.id} className="col-12 col-md-5 m-1">
 				<Card style={style}>
 					<Link to={`/menu/${dish.id}`} >
-						<CardImg src={dish.image} alt={dish.name} />
+						<CardImg src={baseUrl + dish.image} alt={dish.name} />
 						<CardImgOverlay>
 							<CardTitle>{dish.name}</CardTitle>
 						</CardImgOverlay>
