@@ -4,17 +4,20 @@ import { Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const RenderDish = ({dish}) => {
 	if (dish != null)
 		return(
-			<Card>
-				<CardImg src={baseUrl + dish.image} alt={dish.name} />
-				<CardBody>
-					<CardTitle>{dish.name}</CardTitle>
-					<CardText>{dish.description}</CardText>
-				</CardBody>
-			</Card>
+			<FadeTransform in transformProps={{ exitTransform: 'scale(0.5) translateY(-50%)' }}>
+				<Card>
+					<CardImg src={baseUrl + dish.image} alt={dish.name} />
+					<CardBody>
+						<CardTitle>{dish.name}</CardTitle>
+						<CardText>{dish.description}</CardText>
+					</CardBody>
+				</Card>
+			</FadeTransform>
 		);
 	else
 		return(<div></div>);
@@ -25,10 +28,12 @@ const RenderComments = ({comments}) => {
 
 		if (comments != null){
 			return(
-				<div key={x.id}>
-					<p>{x.comment}</p>
-					<p>-- {x.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</p>
-				</div>						
+				<Fade in key={x.id}>
+					<li>
+						<p>{x.comment}</p>
+						<p>-- {x.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</p>
+					</li>
+				</Fade>		
 			);
 		}
 
@@ -38,7 +43,13 @@ const RenderComments = ({comments}) => {
 
 	});
 
-	return(commentArr);
+	return(
+		<ul className="list-unstyled">
+			<Stagger in>
+				{ commentArr }
+			</Stagger>
+		</ul>
+	);
 }
 
 const DishDetail = (props) => {
