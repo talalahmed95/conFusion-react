@@ -166,7 +166,7 @@ export const fetchLeaders = () => (dispatch) => {
             throw errmess;
       })
     .then(response => response.json())
-    .then(leaders => dispatch(addleaders(leaders)))
+    .then(leaders => dispatch(addLeaders(leaders)))
     .catch(error => dispatch(leadersFailed(error.message)));
 }
 
