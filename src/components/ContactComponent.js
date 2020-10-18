@@ -6,7 +6,8 @@ import { Control, Form, Errors } from 'react-redux-form';
 class Contact extends Component {
     
     submitHandler = (values) => {
-        alert('Current State is: ' + JSON.stringify(values));
+        this.props.postFeedback(values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message, values.date);
+        alert('Thank you for your feedback! ' + JSON.stringify(values));
         this.props.resetFeedbackForm();
     }
 
